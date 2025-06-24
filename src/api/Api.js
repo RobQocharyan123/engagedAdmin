@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 const getBaseURL = () => process.env.REACT_APP_URL;
 
 const instance = axios.create({
@@ -7,7 +7,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     return token
       ? {

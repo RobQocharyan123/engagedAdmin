@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import {
   GeneralFiltersGeneralBlock,
   GeneralFilterSwichMainBlock,
@@ -6,34 +6,59 @@ import {
 } from './styled';
 import debounce from 'lodash.debounce';
 import { Radio } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTableDataThunk } from '../../../Middleware/generalDatathunk';
 
 const GeneralFilters = () => {
   const [inputValue, setInputValue] = useState('');
   const [selectedOption, setSelectedOption] = useState(1);
+  const isUpdate = useSelector((state) => state?.generalTableData?.isUpdate);
 
-  const handleSearch = (value) => {
-    console.log('Searching for:', value, 'radio: ', selectedOption);
-  };
-  const debouncedSearch = useMemo(() => debounce(handleSearch, 500), []);
+  const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const fetchData = useCallback(
+    (search = '', status = 1) => {
+      dispatch(
+        getTableDataThunk({
+          data: {
+            search_data: search || ' ',
+            status: status || 1,
+          },
+        })
+      );
+    },
+    [dispatch]
+  );
+
+  // Memoize debounced fetchData
+  const debouncedFetchData = useMemo(
+    () => debounce(fetchData, 500),
+    [fetchData]
+  );
+
+  const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    debouncedSearch(value);
+    debouncedFetchData(value, selectedOption);
   };
 
   const handleRadioChange = (e) => {
     const value = e.target.value;
     setSelectedOption(value);
-    handleSearch(inputValue, value);
+    fetchData(inputValue, value); // call immediately for radio
   };
+
+  // Initial fetch
+  useEffect(() => {
+    fetchData(inputValue, selectedOption);
+  }, [isUpdate]); // run once on mount
 
   return (
     <GeneralFiltersGeneralBlock>
       <GeneralSearchInputBlock
         type="text"
         value={inputValue}
-        onChange={handleChange}
+        onChange={handleInputChange}
         placeholder="Type here..."
         allowClear
       />

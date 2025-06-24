@@ -6,9 +6,14 @@ import {
 } from './styled';
 import { Button, Tooltip } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { deleteTableItem } from '../../../Services/generalTableService';
+import { useDispatch } from 'react-redux';
+import { setIsUpdate } from '../../../Slices/generalDataSlice';
 
 const DeleteModal = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const showModal = () => {
     setIsOpen(true);
   };
@@ -19,7 +24,19 @@ const DeleteModal = ({ item }) => {
     setIsOpen(false);
   };
 
-  const handleDeleteItem = async () => {};
+  const handleDeleteItem = async () => {
+    try {
+      const res = await deleteTableItem(item?._id);
+
+      if (res.status === 'ok') {
+        dispatch(setIsUpdate());
+        setIsOpen(false);
+      }
+      return res;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -35,7 +52,7 @@ const DeleteModal = ({ item }) => {
         footer={
           <ModalFooterButtonBlock>
             <Button onClick={handleCancel}>No</Button>
-            <Button>Yes</Button>
+            <Button onClick={handleDeleteItem}>Yes</Button>
           </ModalFooterButtonBlock>
         }
       >

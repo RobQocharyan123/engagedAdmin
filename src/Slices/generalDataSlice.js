@@ -5,12 +5,17 @@ import { getTableDataThunk } from '../Middleware/generalDatathunk';
 const initialState = {
   tableData: [],
   loading: false,
+  isUpdate: false,
 };
 
 const generalTableDtaSlice = createSlice({
   name: 'generalTableData',
   initialState,
-  reducers: {},
+  reducers: {
+    setIsUpdate: (state) => {
+      state.isUpdate = !state.isUpdate;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTableDataThunk.pending, (state) => {
@@ -23,5 +28,5 @@ const generalTableDtaSlice = createSlice({
   },
 });
 
-export const {} = generalTableDtaSlice.actions;
+export const { setIsUpdate } = generalTableDtaSlice.actions;
 export default generalTableDtaSlice.reducer;
