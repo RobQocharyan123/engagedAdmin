@@ -1,5 +1,6 @@
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { GenderBlock, NameBlock, StatuysGeneralBlock } from './styled';
+import DeleteModal from '../../GeneralTable/DeleteModal';
 
 export const generalTableColumn = [
   {
@@ -42,6 +43,16 @@ export const generalTableColumn = [
     key: '',
     render: (item) => {
       return <NameBlock>{item?.number ? item?.number : '---'}</NameBlock>;
+    },
+  },
+
+  {
+    title: '',
+    dataIndex: '',
+    key: '',
+    width: 50,
+    render: (item) => {
+      return <DeleteModal item={item} />;
     },
   },
 ];

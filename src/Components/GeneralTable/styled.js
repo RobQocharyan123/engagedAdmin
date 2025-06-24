@@ -2,6 +2,7 @@ import { Col } from 'antd';
 import styled from 'styled-components';
 
 export const GeneralTableBlock = styled(Col)`
+  padding: 20px;
   .ant-table-thead {
     .ant-checkbox {
       display: none;
@@ -13,6 +14,7 @@ export const GeneralTableBlock = styled(Col)`
   }
 
   .ant-table {
+    height: calc(100vh - 160px);
     background: transparent;
   }
   .ant-table-wrapper {
