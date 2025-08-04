@@ -1,55 +1,56 @@
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { GenderBlock, NameBlock, StatuysGeneralBlock } from './styled';
-import DeleteModal from '../../GeneralTable/DeleteModal';
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { GenderBlock, NameBlock, StatuysGeneralBlock } from "./styled";
+import DeleteModal from "../../GeneralTable/DeleteModal";
 
 export const generalTableColumn = [
   {
-    title: 'Gender',
-    dataIndex: '',
-    key: '',
+    title: "Gender",
+    dataIndex: "",
+    key: "",
     render: (item) => {
       return <GenderBlock>{item?.firstOption}</GenderBlock>;
     },
   },
 
   {
-    title: 'Name',
-    dataIndex: '',
-    key: '',
+    title: "Name",
+    dataIndex: "",
+    key: "",
     render: (item) => {
       return <NameBlock>{item?.name}</NameBlock>;
     },
   },
 
   {
-    title: 'Status',
-    dataIndex: '',
-    key: '',
+    title: "Status",
+    dataIndex: "",
+    key: "",
     render: (item) => {
       return (
         <StatuysGeneralBlock>
-          {item?.secondOption === 'yes' ? (
-            <CheckOutlined style={{ color: 'green', fontSize: '20px' }} />
+          {item?.secondOption === "yes" ? (
+            <CheckOutlined style={{ color: "green", fontSize: "20px" }} />
           ) : (
-            <CloseOutlined style={{ color: 'red', fontSize: '20px' }} />
+            <CloseOutlined style={{ color: "red", fontSize: "20px" }} />
           )}
         </StatuysGeneralBlock>
       );
     },
   },
   {
-    title: 'Number',
-    dataIndex: '',
-    key: '',
+    title: "N",
+    dataIndex: "",
+    key: "",
+    width: 50,
     render: (item) => {
-      return <NameBlock>{item?.number ? item?.number : '---'}</NameBlock>;
+      return <NameBlock>{item?.number ? item?.number : "---"}</NameBlock>;
     },
   },
 
   {
-    title: '',
-    dataIndex: '',
-    key: '',
+    title: "",
+    dataIndex: "",
+    key: "",
     width: 50,
     render: (item) => {
       return <DeleteModal item={item} />;

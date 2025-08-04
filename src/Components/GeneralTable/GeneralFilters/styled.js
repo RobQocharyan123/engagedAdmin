@@ -1,5 +1,5 @@
-import { Col, Input } from 'antd';
-import styled from 'styled-components';
+import { Col, Input } from "antd";
+import styled from "styled-components";
 
 export const GeneralFiltersGeneralBlock = styled(Col)`
   height: 50px;
@@ -14,6 +14,11 @@ export const GeneralSearchInputBlock = styled(Input)`
   width: 200px;
   height: 40px;
   border-radius: 30px;
+
+  @media screen and (max-width: 450px) {
+    width: 100px;
+    height: 25px;
+  }
 `;
 
 export const GeneralFilterSwichMainBlock = styled(Col)`
