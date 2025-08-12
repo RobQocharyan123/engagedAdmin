@@ -6,13 +6,13 @@ import GeneralFilters from './GeneralFilters';
 
 const GeneralTable = () => {
   const dataTable = useSelector((state) => state?.generalTableData?.tableData);
-  console.log(dataTable);
+  console.log(dataTable,"lllllll");
 
   return (
     <>
       <GeneralFilters />
       <GeneralTableBlock>
-        <Table columns={generalTableColumn} dataSource={dataTable} />
+        <Table columns={generalTableColumn} dataSource={Array.isArray(dataTable) ?dataTable:[] } />
       </GeneralTableBlock>
     </>
   );

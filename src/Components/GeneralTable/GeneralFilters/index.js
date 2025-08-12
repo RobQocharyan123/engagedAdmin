@@ -8,6 +8,7 @@ import debounce from 'lodash.debounce';
 import { Radio } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTableDataThunk } from '../../../Middleware/generalDatathunk';
+import EngagedDaterPicker from '../EngagedDaterPicker';
 
 const GeneralFilters = () => {
   const [inputValue, setInputValue] = useState('');
@@ -74,6 +75,8 @@ const GeneralFilters = () => {
           ]}
         />
       </GeneralFilterSwichMainBlock>
+
+      <EngagedDaterPicker />
     </GeneralFiltersGeneralBlock>
   );
 };

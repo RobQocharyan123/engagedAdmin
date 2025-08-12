@@ -12,3 +12,12 @@ export const deleteTableItem = async (id) => {
   const res = await API.delete(`/vote/${id}`);
   return res.data;
 };
+
+export const postDate = async (date) => {
+  try {
+    const res = await API.post('/date', { date });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
