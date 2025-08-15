@@ -14,10 +14,7 @@ export const deleteTableItem = async (id) => {
 };
 
 export const postDate = async (date) => {
-  try {
     const res = await API.post('/date', { date });
     return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+
 };

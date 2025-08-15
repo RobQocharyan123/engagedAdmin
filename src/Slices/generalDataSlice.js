@@ -6,6 +6,7 @@ const initialState = {
   tableData: [],
   loading: false,
   isUpdate: false,
+  date:null
 };
 
 const generalTableDtaSlice = createSlice({
@@ -22,7 +23,8 @@ const generalTableDtaSlice = createSlice({
         state.loading = true;
       })
       .addCase(getTableDataThunk.fulfilled, (state, action) => {
-        state.tableData = action.payload;
+        state.tableData = action.payload?.votes;
+        state.date = action.payload?.date;
         state.loading = false;
       });
   },

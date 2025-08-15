@@ -6,7 +6,6 @@ import GeneralFilters from './GeneralFilters';
 
 const GeneralTable = () => {
   const dataTable = useSelector((state) => state?.generalTableData?.tableData);
-  console.log(dataTable,"lllllll");
 
   return (
     <>
